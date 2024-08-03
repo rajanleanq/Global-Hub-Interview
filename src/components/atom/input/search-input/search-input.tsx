@@ -1,6 +1,6 @@
 import * as React from "react";
 import { OtherKindInputProps } from "../input-type";
-import { cn } from "../../../../lib/utils";
+import { cn } from "../../../../core/lib/utils";
 import BaseInput from "../base-input/base-input";
 // import X from "../../../../assets/svg/x.svg";
 const showXButton = (value: unknown, defaultValue: unknown) => {

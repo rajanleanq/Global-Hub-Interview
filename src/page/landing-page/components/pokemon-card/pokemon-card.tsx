@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { formatNumberWithLeadingZeros } from "../../../../lib/utils";
-import { routes } from "../../../../constant/routes";
+import { formatNumberWithLeadingZeros } from "../../../../core/lib/utils";
+import { routes } from "../../../../core/constant/routes";
 
 interface IPokemonCard {
   img_alt: string;
@@ -13,6 +13,9 @@ export default function PokemonCard({
   item_index,
 }: IPokemonCard) {
   const getImgUrl = () => {
+    if (item_index > 809) {
+      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item_index}.png`;
+    }
     return `https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${formatNumberWithLeadingZeros(
       item_index,
       3
@@ -21,7 +24,7 @@ export default function PokemonCard({
   return (
     <Link
       to={routes?.detail_page(item_index)}
-      className="flex flex-col gap-3 bg-sky-gradient h-max p-6 rounded-xl shadow-sm cursor-pointer hover:scale-110 transition-all ease-in-out duration-150 hover:shadow-lg hover:brightness-90"
+      className="flex  w-[150px] flex-col gap-3 bg-sky-gradient h-max p-6 rounded-xl shadow-sm cursor-pointer hover:scale-110 transition-all ease-in-out duration-150 hover:shadow-lg hover:brightness-90"
     >
       <img src={getImgUrl()} alt={img_alt} className="w-24" />
       <div className="flex flex-col gap-1">

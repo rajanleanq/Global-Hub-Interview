@@ -2,7 +2,7 @@ import {
   IPokemonPagination,
   base_url,
   endpoints,
-} from "../../../constant/endpoints";
+} from "../../../core/constant/endpoints";
 
 export interface IPokemonData {
   count: number

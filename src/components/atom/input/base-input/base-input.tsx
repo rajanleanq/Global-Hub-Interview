@@ -1,6 +1,6 @@
 import * as React from "react";
 import { CommonInputProps } from "../input-type";
-import { cn } from "../../../../lib/utils";
+import { cn } from "../../../../core/lib/utils";
 import { Message } from "./input-message";
 type TBaseInputProps = CommonInputProps;
 export const BaseInput = React.forwardRef<HTMLInputElement, TBaseInputProps>(

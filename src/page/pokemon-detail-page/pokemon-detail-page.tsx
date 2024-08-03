@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import DetailPageLayout from "./components/layout/detail-page-layout";
-import { routes } from "../../constant/routes";
+import { routes } from "../../core/constant/routes";
 export default function PokemonDetailPage() {
   return (
     <DetailPageLayout>

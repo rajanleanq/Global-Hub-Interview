@@ -4,7 +4,7 @@ import Select, {
     MultiValueRemoveProps,
     Props,
   } from "react-select"
-import { cn } from "../../../lib/utils"
+import { cn } from "../../../core/lib/utils"
   
   const ClearIndicator = (props: ClearIndicatorProps) => {
     return <components.ClearIndicator {...props}>X</components.ClearIndicator>
