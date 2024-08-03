@@ -1,5 +1,5 @@
 import create from "zustand";
-import { IPokemonResult } from "../page/landing-page/data/api";
+import { IPokemonResult } from "../page/landing-page/data/entity";
 
 export interface StoreState {
   pokemons: IPokemonResult[] | null;

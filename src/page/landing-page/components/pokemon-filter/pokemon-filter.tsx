@@ -2,8 +2,6 @@ import SearchInput from "../../../../components/atom/input/search-input/search-i
 import { ReactSelect } from "../../../../components/atom/select/select";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import {
-  IPokemonFilterBy,
-  IResult,
   fetchPokemonByGender,
   fetchPokemonByHabitat,
   fetchPokemonGender,
@@ -14,7 +12,9 @@ import useStore from "../../../../store/store";
 import { ChangeEvent, FormEvent, useEffect } from "react";
 import InputSkeleton from "../../../../components/molecule/skeleton/input-skeleton";
 import useDebounce from "../../../../core/hooks/use-debounce";
-import { IPokemonResult, fetchPokemon } from "../../data/api";
+import { fetchPokemon } from "../../data/api";
+import { IPokemonFilterBy, IResult } from "./data/entity";
+import { IPokemonResult } from "../../data/entity";
 
 export default function PokemonFilter() {
   const {
@@ -126,7 +126,7 @@ export default function PokemonFilter() {
   }, [debouncedSearchTerm,name]);
 
   return (
-    <div className="min-w-[300px] border-r p-4  relative">
+    <div className="min-w-[300px] border-r p-4  relative xs:hidden md:block">
       <div className="w-[266px] fixed flex flex-col gap-6">
         <form onSubmit={handleSearch}>
           <SearchInput

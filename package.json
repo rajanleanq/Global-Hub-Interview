@@ -11,6 +11,7 @@
     "@types/node": "^16.18.104",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -19,6 +20,7 @@
     "react-scripts": "5.0.1",
     "react-select": "^5.8.0",
     "typescript": "^4.9.5",
+    "vaul": "^0.9.1",
     "web-vitals": "^2.1.4",
     "zustand": "^4.5.4"
   },

@@ -3,18 +3,7 @@ import {
   base_url,
   endpoints,
 } from "../../../core/constant/endpoints";
-
-export interface IPokemonData {
-  count: number
-  next: string
-  previous: any
-  results: IPokemonResult[]
-}
-
-export interface IPokemonResult {
-  name: string
-  url: string
-}
+import { IPokemonData } from "./entity";
 
 export const fetchPokemon = async ({ limit, offset }: IPokemonPagination):Promise<IPokemonData> => {
   const response = await fetch(

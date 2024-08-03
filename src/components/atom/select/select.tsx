@@ -46,7 +46,7 @@ import { cn } from "../../../core/lib/utils"
     "p-0 mt-2 border border-gray-200 bg-white rounded-lg font-nunito text-[14px] leading-14 "
   const groupHeadingStyles = "ml-3 mt-2 mb-1 text-gray-500 text-[14px] leading-14"
   const optionStyles = {
-    base: "hover:cursor-pointer px-4 py-2 capitalize rounded w-full font-nunito text-[14px] leading-14 ",
+    base: "hover:cursor-pointer px-4 py-2 capitalize rounded w-full font-nunito text-[14px] leading-14",
     focus: "bg-gray-100 active:bg-gray-200",
     selected: "flex justify-between flex-row after:text-[#7047EB] text-gray-500",
   }
