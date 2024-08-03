@@ -9,7 +9,7 @@ import { getIdFromUrl } from "../../lib/utils";
 export default function LandingPage() {
   const { data, isFetching } = useQuery({
     queryKey: ["pokemon"],
-    queryFn: async () => await fetchPokemon({ limit: 40, offset: 0 }),
+    queryFn: async () => await fetchPokemon({ limit: 32, offset: 0 }),
   });
 
   return (
