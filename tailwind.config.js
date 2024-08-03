@@ -14,7 +14,7 @@ module.exports = {
       backgroundImage: {
         "sky-gradient": "linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%)",
         "dark-blue-gradient":
-          "linear-gradient(15deg, #13547a 0%, #80d0c7 100%)",
+          "linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);",
         "white-gradient": "linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%)",
       },
     },

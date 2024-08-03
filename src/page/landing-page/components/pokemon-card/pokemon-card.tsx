@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { formatNumberWithLeadingZeros } from "../../../../core/lib/utils";
 import { routes } from "../../../../core/constant/routes";
+import { image_base_url } from "../../../../core/constant/endpoints";
 
 interface IPokemonCard {
   img_alt: string;
@@ -13,13 +14,7 @@ export default function PokemonCard({
   item_index,
 }: IPokemonCard) {
   const getImgUrl = () => {
-    if (item_index > 809) {
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${item_index}.png`;
-    }
-    return `https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/images/${formatNumberWithLeadingZeros(
-      item_index,
-      3
-    )}.png`;
+    return image_base_url(item_index);
   };
   return (
     <Link

@@ -9,7 +9,7 @@ export default function DetailPageLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="w-full h-full flex flex-1 bg-white-gradient">
+      <div className="w-full h-full flex flex-1 bg-white-gradient relative">
         <div className="w-full h-full">{children}</div>
       </div>
     </div>
