@@ -18,7 +18,7 @@ import {
   fetchPokemonRegion,
   fetchPokemonRegionDetail,
 } from "../../data/api";
-import { IPokemonFilterBy, IResult } from "../../data/entity";
+import { IPokemonFilterBy } from "../../data/entity";
 import XSvg from "../../../../../../assets/svg/x.svg";
 import { cn, getIdFromUrl } from "../../../../../../core/lib/utils";
 import { IPokemonResult } from "../../../../data/entity";
@@ -42,6 +42,7 @@ export default function FilterDrawer({
     region,
     setName,
     setPokemon,
+    setPokemonDataLoading
   } = useStore();
   const { data: pokemonData } = useQuery({
     queryKey: ["pokemon"],
@@ -87,33 +88,42 @@ export default function FilterDrawer({
   };
   const genderChangeHandler = async (value: string) => {
     try {
+      setPokemonDataLoading(true);
       clearValues();
       setGender(value);
       const response = await pokemonGenderMutation.mutateAsync({
         name: value,
       });
-      setPokemon(
-        response?.pokemon_species_details?.map((p) => p.pokemon_species)
-      );
+      if (response) {
+        setPokemonDataLoading(false);
+        setPokemon(
+          response?.pokemon_species_details?.map((p) => p.pokemon_species)
+        );
+      }
     } catch (err) {
-      console.log(err);
+      setPokemonDataLoading(false);
     }
   };
   const habitatChangeHandler = async (value: string) => {
     try {
+      setPokemonDataLoading(true);
       clearValues();
       setHabitat(value);
       const response = await pokemonHabitatMutation.mutateAsync({
         name: value,
       });
-      setPokemon(response?.pokemon_species);
+      if (response) {
+        setPokemon(response?.pokemon_species);
+        setPokemonDataLoading(false);
+      }
     } catch (err) {
-      console.log(err);
+      setPokemonDataLoading(false);
     }
   };
 
   const regionChangeHandler = async (region: string) => {
     try {
+      setPokemonDataLoading(true);
       clearValues();
       setRegion(region);
       const response = await pokemonRegionMutation.mutateAsync(region);
@@ -121,10 +131,13 @@ export default function FilterDrawer({
         const region_pokemons = await pokemonGenerationMutation.mutateAsync(
           Number(getIdFromUrl(response?.main_generation?.url))
         );
-        setPokemon(region_pokemons?.pokemon_species);
+        if (region_pokemons) {
+          setPokemon(region_pokemons?.pokemon_species);
+          setPokemonDataLoading(false);
+        }
       }
     } catch (err) {
-      console.log(err);
+      setPokemonDataLoading(false);
     }
   };
 

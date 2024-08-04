@@ -12,8 +12,8 @@ import FilterSvg from "../../assets/svg/filter.svg";
 import FilterDrawer from "./components/pokemon-filter/mobile-view-filter/component/filter-drawer";
 import { IPokemonResult } from "./data/entity";
 export default function LandingPage() {
-  const [drawer,setDrawer] = useState<boolean>(false);
-  const { setPokemon, pokemons, name } = useStore();
+  const [drawer, setDrawer] = useState<boolean>(false);
+  const { setPokemon, pokemons, name, pokemonDataLoading } = useStore();
   const { data, isFetching } = useQuery({
     queryKey: ["pokemon"],
     queryFn: async () => await fetchPokemon({ limit: 1000, offset: 0 }),
@@ -28,12 +28,16 @@ export default function LandingPage() {
       <div className="p-6 flex flex-col gap-6">
         <div className="xs:flex md:hidden gap-2 w-full ">
           <MobileViewFilter />
-          <Button onClick={() => setDrawer(true)} variant={'secondary'} className="bg-blue-400 rounded-lg w-max">
+          <Button
+            onClick={() => setDrawer(true)}
+            variant={"secondary"}
+            className="bg-blue-400 rounded-lg w-max"
+          >
             <img src={FilterSvg} alt="filter" className="w-6 h-6" />
           </Button>
         </div>
         <div className="flex flex-wrap gap-6">
-          {!isFetching &&
+          {(!isFetching && !pokemonDataLoading) &&
             pokemons?.map((p: IPokemonResult) => (
               <PokemonCard
                 key={p?.name}
@@ -42,9 +46,8 @@ export default function LandingPage() {
                 item_index={Number(getIdFromUrl(p?.url))}
               />
             ))}
-          {isFetching &&
+          {(isFetching || pokemonDataLoading) &&
             Array?.from({ length: 25 }, (_, i) => <Skeleton key={i} />)}
-
           {pokemons?.length === 0 && (
             <h2 className="text-xl">
               No results found with keyword "
@@ -53,7 +56,11 @@ export default function LandingPage() {
           )}
         </div>
       </div>
-      <FilterDrawer isOpen={drawer} onClose={() => setDrawer(false)} title={'Filter'}/>
+      <FilterDrawer
+        isOpen={drawer}
+        onClose={() => setDrawer(false)}
+        title={"Filter"}
+      />
     </LandingPageLayout>
   );
 }

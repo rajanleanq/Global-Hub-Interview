@@ -32,6 +32,7 @@ export default function PokemonFilter() {
     name,
     setPokemon,
     pokemons,
+    setPokemonDataLoading,
   } = useStore();
   const { data: pokemonData } = useQuery({
     queryKey: ["pokemon"],
@@ -88,33 +89,42 @@ export default function PokemonFilter() {
   };
   const genderChangeHandler = async (value: string) => {
     try {
+      setPokemonDataLoading(true);
       clearValues();
       setGender(value);
       const response = await pokemonGenderMutation.mutateAsync({
         name: value,
       });
-      setPokemon(
-        response?.pokemon_species_details?.map((p) => p.pokemon_species)
-      );
+      if (response) {
+        setPokemonDataLoading(false);
+        setPokemon(
+          response?.pokemon_species_details?.map((p) => p.pokemon_species)
+        );
+      }
     } catch (err) {
-      console.log(err);
+      setPokemonDataLoading(false);
     }
   };
   const habitatChangeHandler = async (value: string) => {
     try {
+      setPokemonDataLoading(true);
       clearValues();
       setHabitat(value);
       const response = await pokemonHabitatMutation.mutateAsync({
         name: value,
       });
-      setPokemon(response?.pokemon_species);
+      if (response) {
+        setPokemon(response?.pokemon_species);
+        setPokemonDataLoading(false);
+      }
     } catch (err) {
-      console.log(err);
+      setPokemonDataLoading(false);
     }
   };
 
   const regionChangeHandler = async (region: string) => {
     try {
+      setPokemonDataLoading(true);
       clearValues();
       setRegion(region);
       const response = await pokemonRegionMutation.mutateAsync(region);
@@ -122,10 +132,13 @@ export default function PokemonFilter() {
         const region_pokemons = await pokemonGenerationMutation.mutateAsync(
           Number(getIdFromUrl(response?.main_generation?.url))
         );
-        setPokemon(region_pokemons?.pokemon_species);
+        if (region_pokemons) {
+          setPokemon(region_pokemons?.pokemon_species);
+          setPokemonDataLoading(false);
+        }
       }
     } catch (err) {
-      console.log(err);
+      setPokemonDataLoading(false);
     }
   };
   const searchConditions = () => {
@@ -149,13 +162,13 @@ export default function PokemonFilter() {
       searchConditions();
     }
   }, [debouncedSearchTerm, name]);
-const resetHandler = () => {
-  setPokemon(pokemonData?.results as IPokemonResult[]);
-  setGender(null);
-  setHabitat(null);
-  setRegion(null);
-  setName(null);
-}
+  const resetHandler = () => {
+    setPokemon(pokemonData?.results as IPokemonResult[]);
+    setGender(null);
+    setHabitat(null);
+    setRegion(null);
+    setName(null);
+  };
   return (
     <div className="min-w-[300px] border-r p-4  relative xs:hidden md:block">
       <div className="w-[266px] fixed flex flex-col gap-6">
@@ -199,7 +212,9 @@ const resetHandler = () => {
         ) : (
           <InputSkeleton />
         )}
-        <Button className="bg-blue-400" onClick={resetHandler}>Reset</Button>
+        <Button className="bg-blue-400" onClick={resetHandler}>
+          Reset
+        </Button>
       </div>
     </div>
   );
