@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
-import LandingPage from "../page/landing-page/landing-page";
-import PokemonDetailPage from "../page/pokemon-detail-page/pokemon-detail-page";
+import LandingPage from "../../page/landing-page/landing-page";
+import PokemonDetailPage from "../../page/pokemon-detail-page/pokemon-detail-page";
 
 export default function AppRoutes() {
   return (
