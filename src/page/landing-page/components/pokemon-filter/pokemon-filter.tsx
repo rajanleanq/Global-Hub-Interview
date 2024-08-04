@@ -6,7 +6,9 @@ import {
   fetchPokemonByHabitat,
   fetchPokemonGender,
   fetchPokemonHabitat,
+  fetchPokemonMainGeneration,
   fetchPokemonRegion,
+  fetchPokemonRegionDetail,
 } from "./data/api";
 import useStore from "../../../../store/store";
 import { ChangeEvent, FormEvent, useEffect } from "react";
@@ -15,6 +17,8 @@ import useDebounce from "../../../../core/hooks/use-debounce";
 import { fetchPokemon } from "../../data/api";
 import { IPokemonFilterBy, IResult } from "./data/entity";
 import { IPokemonResult } from "../../data/entity";
+import { getIdFromUrl } from "../../../../core/lib/utils";
+import { Button } from "../../../../components/atom/button/button";
 
 export default function PokemonFilter() {
   const {
@@ -41,6 +45,16 @@ export default function PokemonFilter() {
   const pokemonHabitatMutation = useMutation({
     mutationFn: async ({ name }: IPokemonFilterBy) =>
       await fetchPokemonByHabitat({ name }),
+  });
+  const pokemonGenerationMutation = useMutation({
+    mutationFn: async (id: string | number) =>
+      await fetchPokemonMainGeneration(id),
+    mutationKey: ["pokemon-generation"],
+  });
+  const pokemonRegionMutation = useMutation({
+    mutationFn: async (id: string | number) =>
+      await fetchPokemonRegionDetail(id),
+    mutationKey: ["pokemon-region"],
   });
   const { data: pokemonGender, isFetching: pokemonGenderFetching } = useQuery({
     queryKey: ["pokemon-gender"],
@@ -99,9 +113,20 @@ export default function PokemonFilter() {
     }
   };
 
-  const regionChangeHandler = (region: string) => {
-    clearValues();
-    setRegion(region);
+  const regionChangeHandler = async (region: string) => {
+    try {
+      clearValues();
+      setRegion(region);
+      const response = await pokemonRegionMutation.mutateAsync(region);
+      if (response) {
+        const region_pokemons = await pokemonGenerationMutation.mutateAsync(
+          Number(getIdFromUrl(response?.main_generation?.url))
+        );
+        setPokemon(region_pokemons?.pokemon_species);
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
   const searchConditions = () => {
     if (pokemons) {
@@ -123,8 +148,14 @@ export default function PokemonFilter() {
     if (debouncedSearchTerm) {
       searchConditions();
     }
-  }, [debouncedSearchTerm,name]);
-
+  }, [debouncedSearchTerm, name]);
+const resetHandler = () => {
+  setPokemon(pokemonData?.results as IPokemonResult[]);
+  setGender(null);
+  setHabitat(null);
+  setRegion(null);
+  setName(null);
+}
   return (
     <div className="min-w-[300px] border-r p-4  relative xs:hidden md:block">
       <div className="w-[266px] fixed flex flex-col gap-6">
@@ -168,6 +199,7 @@ export default function PokemonFilter() {
         ) : (
           <InputSkeleton />
         )}
+        <Button className="bg-blue-400" onClick={resetHandler}>Reset</Button>
       </div>
     </div>
   );

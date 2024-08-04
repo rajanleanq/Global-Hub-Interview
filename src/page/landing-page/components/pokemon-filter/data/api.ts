@@ -3,6 +3,8 @@ import {
   IPokemonByHabitat,
   IPokemonFilterBy,
   IPokemonFilterByGender,
+  IPokemonGeneration,
+  IPokemonRegionDetails,
   IResponse,
 } from "./entity";
 export const fetchPokemonGender = async (): Promise<IResponse> => {
@@ -25,7 +27,18 @@ export const fetchPokemonRegion = async (): Promise<IResponse> => {
   );
   return response as IResponse;
 };
-
+export const fetchPokemonMainGeneration = async (id: string | number):Promise<IPokemonGeneration> => {
+  const response = await fetch(base_url + endpoints?.generation(id)).then(
+    (res) => res.json()
+  );
+  return response as IPokemonGeneration;
+};
+export const fetchPokemonRegionDetail = async (id: string | number):Promise<IPokemonRegionDetails> => {
+  const response = await fetch(base_url + endpoints?.region + "/" + id).then(
+    (res) => res.json()
+  );
+  return response as IPokemonRegionDetails;
+};
 // specific filter
 export const fetchPokemonByGender = async ({
   name,

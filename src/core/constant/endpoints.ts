@@ -12,4 +12,5 @@ export const endpoints = {
   gender: "gender",
   habitat: "pokemon-habitat",
   region: "region",
+  generation: (id: number | string) => `generation/${id}`,
 };
