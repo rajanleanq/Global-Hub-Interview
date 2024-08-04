@@ -32,3 +32,22 @@ export function generateRandomHexColor():string {
   const b = Math.floor(Math.random() * 256);
   return `rgb(${r}, ${g}, ${b})`;
 }
+
+/**
+ * Determines the gender rate of a Pokémon.
+ *
+ * @param {number | null} gender - The gender rate of the Pokémon. -1 for N/A, 0 for genderless, other values for gendered.
+ * @return {string} The gender rate of the Pokémon.
+ */
+export function DetermineGenderRate(gender: number | null): string {
+  switch (gender) {
+    case -1:
+      return "N/A";
+    case 0:
+      return "0%\u2640 100%\u2642";
+    default:
+      const female = Math.round((gender as number) * 1250) / 100;
+      const male = 100 - female;
+      return `${female}%\u2640 ${male}%\u2642`;
+  }
+}

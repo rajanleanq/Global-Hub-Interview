@@ -13,4 +13,6 @@ export const endpoints = {
   habitat: "pokemon-habitat",
   region: "region",
   generation: (id: number | string) => `generation/${id}`,
+  pokemon_species:(name:string) => `pokemon-species/${name}`,
+  pokemon_evolution_chain:(name:string) => `evolution-chain/${name}`,
 };
