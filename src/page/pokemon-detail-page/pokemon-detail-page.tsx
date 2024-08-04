@@ -3,7 +3,6 @@ import DetailPageLayout from "./components/layout/detail-page-layout";
 import { useQuery } from "@tanstack/react-query";
 import { fetchPokemonDetails } from "./data/api";
 import { routes } from "../../core/constant/routes";
-import { useEffect } from "react";
 import PokemonEvolution from "./components/pokemon-evolution/pokemom-evolution";
 import { IPokemonDetail } from "./data/entity";
 import PokemonInfo from "./components/pokemon-info/pokemon-info";

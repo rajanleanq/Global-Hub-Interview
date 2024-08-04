@@ -1,3 +1,4 @@
+//store data
 import create from "zustand";
 import { IPokemonResult } from "../page/landing-page/data/entity";
 

@@ -49,15 +49,31 @@ export default function PokemonFilter() {
     queryFn: async () => await fetchPokemonRegion(),
   });
 
-  const valueHandler = (value: string | null) => {
+  /**
+   * Returns an object with a `value` and `label` property if the input `value` is not null.
+   *
+   * @param {string | null} value - The input value.
+   * @return {object | null} An object with `value` and `label` properties, or null if the input is null.
+   */
+
+  const valueHandler = (value: string | null): IOptions | null => {
     if (value) {
       return { value, label: value };
     }
     return null;
   };
-  const optionHandler = (payload: IResult[]) => {
+
+  /**
+   * Maps an array of IResult objects to an array of objects with 'value' and 'label' properties.
+   *
+   * @param {IResult[]} payload - The array of IResult objects to be mapped.
+   * @return {Array<{value: string, label: string}>} The mapped array of objects.
+   */
+  const optionHandler = (payload: IResult[]): IOptions[] => {
     return payload?.map((p) => ({ value: p.name, label: p.name }));
   };
+
+  //clear values of other if any filter is selected
   const clearValues = () => {
     setGender(null);
     setHabitat(null);
@@ -65,6 +81,7 @@ export default function PokemonFilter() {
     setName(null);
   };
 
+  //reset all values
   const resetHandler = () => {
     setPokemon(pokemonData?.results as IPokemonResult[]);
     clearValues();

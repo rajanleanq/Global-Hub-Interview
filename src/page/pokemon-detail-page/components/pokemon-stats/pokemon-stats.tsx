@@ -1,5 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { useEffect } from "react";
 import { fetchPokemonSpeciesDetail } from "../../data/api";
 import { useParams } from "react-router";
 import { IPokemonDetail } from "../../data/entity";

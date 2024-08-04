@@ -2,6 +2,14 @@ import React from "react";
 import Navbar from "../navbar/navbar";
 import PokemonFilter from "../pokemon-filter/pokemon-filter";
 
+/**
+ * Renders the layout for the landing page.
+ *
+ * @param {Object} props - The properties for the component.
+ * @param {React.ReactNode} props.children - The child components to render.
+ * @return {JSX.Element} The rendered landing page layout.
+ */
+
 export default function LandingPageLayout({
   children,
 }: {

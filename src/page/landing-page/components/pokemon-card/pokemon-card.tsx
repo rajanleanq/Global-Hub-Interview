@@ -8,6 +8,16 @@ interface IPokemonCard {
   title: string;
   item_index: number;
 }
+
+/**
+ * Renders a Pokemon card component.
+ *
+ * @param {Object} props - The props object containing the following properties:
+ *   - {string} img_alt: The alt text for the image.
+ *   - {string} title: The title of the Pokemon.
+ *   - {number} item_index: The index of the Pokemon item.
+ * @return {JSX.Element} The rendered Pokemon card component.
+ */
 export default function PokemonCard({
   img_alt,
   title,
