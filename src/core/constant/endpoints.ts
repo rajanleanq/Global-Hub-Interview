@@ -1,9 +1,9 @@
 export const base_url = "https://pokeapi.co/api/v2/";
 
 //img base url for pokemon cards
+//also added in .env file for no errors hard coded it
 export const image_base_url = (id: string | number) =>
   `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/${id}.png`;
-
 
 export interface IPokemonPagination {
   limit: number;

@@ -1,5 +1,4 @@
 import { ReactSelect } from "../../../../../components/atom/select/select";
-import { IResult } from "../data/entity";
 import useStore from "../../../../../store/store";
 import { useMutation } from "@tanstack/react-query";
 import {

@@ -35,7 +35,7 @@ export const SearchInput = React.forwardRef<
       trailElement={
         showXButton(value, defaultValue) && (
           <div onClick={() => onClear?.()} data-testid="trail-icon" className="cursor-pointer">
-            <img src={X} />
+            <img src={X} alt="close-cion" />
           </div>
         )
       }

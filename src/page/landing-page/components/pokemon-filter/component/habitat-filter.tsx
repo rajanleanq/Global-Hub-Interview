@@ -1,5 +1,5 @@
 import { ReactSelect } from "../../../../../components/atom/select/select";
-import { IPokemonFilterBy, IResult } from "../data/entity";
+import { IPokemonFilterBy } from "../data/entity";
 import useStore from "../../../../../store/store";
 import { useMutation } from "@tanstack/react-query";
 import { fetchPokemonByHabitat } from "../data/api";

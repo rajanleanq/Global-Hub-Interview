@@ -37,7 +37,8 @@ export default function LandingPage() {
           </Button>
         </div>
         <div className="flex flex-wrap gap-6">
-          {(!isFetching && !pokemonDataLoading) &&
+          {!isFetching &&
+            !pokemonDataLoading &&
             pokemons?.map((p: IPokemonResult) => (
               <PokemonCard
                 key={p?.name}
@@ -53,6 +54,9 @@ export default function LandingPage() {
               No results found with keyword "
               <span className="font-semibold text-red-600">{name}</span>"
             </h2>
+          )}
+          {!isFetching && !pokemonDataLoading && pokemons?.length === 0 && (
+            <h2 className="text-xl">No data found ☹️</h2>
           )}
         </div>
       </div>
