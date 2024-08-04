@@ -38,6 +38,7 @@ export default function MobileViewFilter() {
   return (
     <form onSubmit={handleSearch} className="w-full">
       <SearchInput
+      onClear={() => setName("")}
         placeHolder="Search pokemon by name"
         onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
         value={name || ""}

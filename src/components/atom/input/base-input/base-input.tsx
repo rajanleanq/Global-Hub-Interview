@@ -16,7 +16,6 @@ export const BaseInput = React.forwardRef<HTMLInputElement, TBaseInputProps>(
       isDisabled,
       trailElement,
       leadingElement,
-      size,
       type,
       ...props
     },

@@ -2,7 +2,7 @@ import * as React from "react";
 import { OtherKindInputProps } from "../input-type";
 import { cn } from "../../../../core/lib/utils";
 import BaseInput from "../base-input/base-input";
-// import X from "../../../../assets/svg/x.svg";
+import X from "../../../../assets/svg/x.svg";
 const showXButton = (value: unknown, defaultValue: unknown) => {
   if (value && value !== "") return true;
   if (typeof value === "undefined" && defaultValue) return true;
@@ -32,13 +32,13 @@ export const SearchInput = React.forwardRef<
       defaultValue={defaultValue}
       value={value}
       onChange={onChange}
-      // trailElement={
-      //   showXButton(value, defaultValue) && (
-      //     <div onClick={() => onClear?.()} test-id="trail-icon">
-      //       <X />
-      //     </div>
-      //   )
-      // }
+      trailElement={
+        showXButton(value, defaultValue) && (
+          <div onClick={() => onClear?.()} data-testid="trail-icon" className="cursor-pointer">
+            <img src={X} />
+          </div>
+        )
+      }
       leadingIconClassName={cn("text-icon-primary", leadingIconClassName)}
       leadingIcon={
         leadingIcon || (

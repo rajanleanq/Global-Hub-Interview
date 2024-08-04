@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams } from "react-router";
 import { IPokemonDetail } from "../../data/entity";
 import { cn, formatNumberWithLeadingZeros } from "../../../../core/lib/utils";

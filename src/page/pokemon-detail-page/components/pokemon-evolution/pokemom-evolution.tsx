@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import PokemonCard from "../../../landing-page/components/pokemon-card/pokemon-card";
 import { EvolvesTo, EvolvesTo2, IPokemonDetail } from "../../data/entity";
 import { fetchPokemonEvolutionChain } from "../../data/api";

@@ -96,7 +96,6 @@ export interface CommonInputProps
    * See More: {@link https://docs.cypress.io/guides/references/best-practices#Selecting-Elements}
    */
   testid?: string;
-  size?: 'sm' | 'md' | 'lg' | 'x-sm';
 }
 
 // export type SlugInputProps = Omit<CommonInputProps, 'onChange'> & {

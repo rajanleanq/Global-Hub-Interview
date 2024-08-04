@@ -4,11 +4,7 @@ import useDebounce from "../../../../../core/hooks/use-debounce";
 import { IPokemonData } from "../../../data/entity";
 import SearchInput from "../../../../../components/atom/input/search-input/search-input";
 
-const SearchInputFilter = ({
-  pokemonData,
-}: {
-  pokemonData: IPokemonData;
-}) => {
+const SearchInputFilter = ({ pokemonData }: { pokemonData: IPokemonData }) => {
   const { name, setName, pokemons, setPokemon } = useStore();
   const debouncedSearchTerm = useDebounce(name, 500);
 
@@ -36,6 +32,7 @@ const SearchInputFilter = ({
   return (
     <form onSubmit={handleSearch}>
       <SearchInput
+        onClear={() => setName("")}
         placeHolder="Search pokemon by name"
         onChange={(e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
         value={name || ""}
