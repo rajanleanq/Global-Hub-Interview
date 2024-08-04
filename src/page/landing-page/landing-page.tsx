@@ -55,9 +55,6 @@ export default function LandingPage() {
               <span className="font-semibold text-red-600">{name}</span>"
             </h2>
           )}
-          {!isFetching && !pokemonDataLoading && pokemons?.length === 0 && (
-            <h2 className="text-xl">No data found ☹️</h2>
-          )}
         </div>
       </div>
       <FilterDrawer
